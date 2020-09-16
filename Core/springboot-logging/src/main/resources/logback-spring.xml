@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<springProfile name="prod|dev">
+		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+		<root level="INFO">
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+	<springProfile name="prod|dev">
+		<appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<file>${LOG_PATH}/springboot-logging.log</file>
+			<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>${LOG_PATH}/archived/springboot-logging_%d{yyyy_MM_dd}_%i.log
+				</fileNamePattern>
+				<maxFileSize>1MB</maxFileSize>
+				<totalSizeCap>10MB</totalSizeCap>
+				<maxHistory>10</maxHistory>
+			</rollingPolicy>
+			<encoder>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%20thread] %-50logger{36}: %msg%n</pattern>
+			</encoder>
+		</appender>
+		<logger name="org.springframework" level="INFO" />
+		<logger name="workshop" level="INFO" />
+		<root level="INFO">
+			<appender-ref ref="FILE-ROLLING" />
+		</root>
+	</springProfile>
+</configuration>

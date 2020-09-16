@@ -1,0 +1,45 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+}
+
+.mainDiv {
+	text-align: center;
+}
+
+.fileUploadDiv {
+	margin-bottom: 50px;
+}
+
+table {
+	width: 50%;
+	margin: auto;
+	border-radius: 1em;
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 2px solid black;
+}
+
+th, td {
+	padding: 10px;
+}
+
+.error {
+	color: red;
+	height: 30px;
+}
+
+.resultDiv {
+	margin-top: 10px;
+}
+
+.filterDiv {
+	height: 20px;
+	text-align: center;
+	margin: 15px;
+	text-align: center;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js/}"></script>
+<title>File Upload</title>
+</head>
+<script>
+	$(document).ready(function() {
+		$("#filterDiv").css("display", "none");
+
+		$("#file").click(function() {
+			$("#error").empty();
+			$("#resultDiv").empty()
+			//$("#filterDiv").css("display", "none");
+		});
+
+		$("#filter").click(function() {
+			$("#filterDiv").css("display", "block");
+		});
+
+		$("#filterBtn").click(function() {
+			$("#filterForm").submit();
+		});
+
+	});
+</script>
+<body>
+	<div id="mainDiv" class="mainDiv">
+		<div id="fileUploadDiv" class="fileUploadDiv">
+			<h2>Robobank File Processing</h2>
+			<br> <br>
+			<div id="error" class="error" th:text="${fileError}"></div>
+			<form th:action="@{/upload}" method="post" enctype="multipart/form-data" autocomplete="off">
+				<table>
+					<tr>
+						<td align="right"><label for="file">Please upload CSV file:</label></td>
+						<td><input type="file" name="file" id="file" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="Upload" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+		<div id="resultDiv" class="resultDiv">
+			<div id="filterDiv" class="filterDiv">
+				<form th:action="@{/filter}" method="post" id="filterForm" autocomplete="off">
+					<span>Enter issue count value:</span>&nbsp;&nbsp; <span><input type="text"
+						name="filterValue" id="filterValue"></span>&nbsp;&nbsp; <span><button id="filterBtn"
+							class="filterBtn">Filter Value</button></span>
+				</form>
+			</div>
+
+			<div id="recordDiv" class="recordDiv" th:if="${records != null and !records.empty}">
+				<table>
+					<tr>
+						<th>First Name</th>
+						<th>Sur Name</th>
+						<th>Issue Count&nbsp;(<a href="#" id="filter" class="filter">Filter</a>)
+						</th>
+						<th>DOB</th>
+					</tr>
+					<tr th:each="record: ${records}">
+						<td th:text="${record.firstName}"></td>
+						<td th:text="${record.surName}"></td>
+						<td th:text="${record.issueCount}"></td>
+						<td th:text="${record.dob}"></td>
+					</tr>
+				</table>
+			</div>
+			<div th:if="${empty != null}">
+				<div id="error" class="error" th:text="${empty}"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

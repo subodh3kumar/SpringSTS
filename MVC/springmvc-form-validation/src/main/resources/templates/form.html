@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/login.js}"></script>
+<title>Form Validation</title>
+</head>
+<body>
+	<h2>Login Example</h2>
+	<form action="#" th:action="@{/}" method="post" th:object="${user}">
+		<table>
+			<tr>
+				<td><label for="name">Name</label></td>
+				<td><input type="text" th:field="*{name}"></td>
+				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" id="error">Name Error</td>
+			</tr>
+			<tr>
+				<td><label for="age">Age</label></td>
+				<td><input type="text" th:field="*{age}"></td>
+				<td th:if="${#fields.hasErrors('age')}" th:errors="*{age}" id="error">Age Error</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Submit" />
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
