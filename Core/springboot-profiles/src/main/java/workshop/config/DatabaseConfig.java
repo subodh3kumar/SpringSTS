@@ -1,20 +1,17 @@
 package workshop.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Setter
-@Getter
 @Configuration
 @ConfigurationProperties("spring.datasource")
 public class DatabaseConfig {
+
+	private static final Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
 
 	private String url;
 	private String username;
@@ -25,15 +22,15 @@ public class DatabaseConfig {
 	public String devDatabaseConnection() {
 		log.info("devDatabaseConnection() method called");
 		log.info("url: " + url);
-		return "Db connection for DEV environment";
+		return "DB connection for DEV environment";
 	}
 
 	@Bean
-	@Profile("test")
-	public String testDatabaseConnection() {
+	@Profile("uat")
+	public String uatDatabaseConnection() {
 		log.info("testDatabaseConnection() method called");
 		log.info("url: " + url);
-		return "Db connection for TEST environment";
+		return "DB connection for UAT environment";
 	}
 
 	@Bean
@@ -41,6 +38,6 @@ public class DatabaseConfig {
 	public String prodDatabaseConnection() {
 		log.info("prodDatabaseConnection() method called");
 		log.info("url: " + url);
-		return "Db connection for PROD environment";
+		return "DB connection for PROD environment";
 	}
 }

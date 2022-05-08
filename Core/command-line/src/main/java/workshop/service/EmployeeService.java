@@ -2,13 +2,17 @@ package workshop.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import workshop.model.Employee;
+import workshop.models.Employee;
 import workshop.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
+
+	private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
 
 	private EmployeeRepository repository;
 
@@ -18,7 +22,6 @@ public class EmployeeService {
 
 	public void readAllEmployee() {
 		List<Employee> employees = repository.findAll();
-		employees.forEach(System.out::println);
+		employees.forEach(emp -> log.info(emp.toString()));
 	}
-
 }

@@ -1,11 +1,13 @@
 package workshop;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
 public class LoggingService {
+
+	private static final Logger log = LoggerFactory.getLogger(LoggingService.class);
 
 	public int divide(int num1, int num2) {
 		log.info("divide() method called - info");

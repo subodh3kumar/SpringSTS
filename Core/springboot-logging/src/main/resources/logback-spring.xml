@@ -2,12 +2,14 @@
 <!DOCTYPE xml>
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	
 	<springProfile name="prod|dev">
 		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 		<root level="INFO">
 			<appender-ref ref="CONSOLE" />
 		</root>
 	</springProfile>
+	
 	<springProfile name="prod|dev">
 		<appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
 			<file>${LOG_PATH}/springboot-logging.log</file>

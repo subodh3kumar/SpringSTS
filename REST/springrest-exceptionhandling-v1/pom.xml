@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.4.RELEASE</version>
+		<version>2.6.3</version>
 		<relativePath />
 	</parent>
 	<groupId>workshop</groupId>
@@ -15,7 +15,7 @@
 	<name>springrest-exceptionhandling-v1</name>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 
 	<dependencies>
@@ -31,20 +31,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
